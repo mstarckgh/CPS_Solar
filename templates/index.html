@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block header %}
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5 mb-0">
+    <div class="row">
+        <div class="col-12 col-lg-5">
+            <h3 class="text-secondary">Neuen Ladevorgang planen</h3>
+            <form action="/start_calc" method="post">
+                <div class="mb-3">
+                    <label for="startDate" class="form-label">Startzeitpunkt</label>
+                    <input type="datetime-local" class="form-control bg-dark text-secondary border-secondary" id="startDate" name="startDate">
+                </div>
+                <div class="mb-3">
+                    <label for="endDate" class="form-label">Endzeitpunkt</label>
+                    <input type="datetime-local" class="form-control bg-dark text-secondary border-secondary" id="endDate" name="endDate">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="bat">Benötigte Energy</label>
+                    <input type="text" class="form-control bg-dark text-secondary border-secondary" id="bat" name="batteryCapacity">
+                </div>
+                <button type="submit" class="btn btn-primary">Starten</button>
+            </form>  
+        </div>
+        <div class="col-12 col-lg-7">
+            <div class="row my-5">
+                <div class="col-6">
+                    <div class="card bg-dark border border-secondary text-white ">
+                        <div class="card-body text-center">
+                            <h1 class="card-text text-primary">{{ real.leistung }} kW</h1>
+                            <h5 class="card-title text-secondary">Aktuelle PV-Leistung</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="card bg-dark border border-secondary text-white ">
+                        <div class="card-body text-center">
+                            <h1 class="card-text text-primary">{{ real.globalstrahlung }} W/m^2</h1>
+                            <h5 class="card-title text-secondary">Aktuelle Globalstrahlung</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-6">
+                    <div class="card bg-dark border border-secondary text-white ">
+                        <div class="card-body text-center">
+                            <h1 class="card-text text-primary">{{ real.strompreis }} ct/kWh</h1>
+                            <h5 class="card-title text-secondary">Aktueller Strompreis</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card bg-dark border border-secondary text-white ">
+                        <div class="card-body text-center">
+                            {% if pred.laden %}
+                                <span style="width: 50px; height: 50px; border-radius: 50%; background-color: green; display: inline-block;"></span>
+                            {% else %}
+                            <span style="width: 50px; height: 50px; border-radius: 50%; background-color: red; display: inline-block;"></span>
+                            {% endif %}
+                            <h5 class="card-title text-secondary">Ladevorgang</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-content-right">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+

@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block head %}<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>{% endblock %}
+
+
+{% block content %}
+
+<h1>Daten</h1>
+
+<div class="row">
+    <div class="col-1 col-lg-3"></div>
+    <div class="col-10 col-lg-6">
+        <form action="/update_graph" method="post">
+            <div class="row align-items-end">
+                <div class="col mb-3">
+                    <label for="startDate" class="form-label">Von:</label>
+                    <input type="datetime-local" class="form-control bg-dark text-secondary border-secondary" id="startDate" name="startDate">
+                </div>
+                <div class="col mb-3">
+                    <label for="endDate" class="form-label">Bis:</label>
+                    <input type="datetime-local" class="form-control bg-dark text-secondary border-secondary" id="endDate" name="endDate">
+                </div> 
+                <div class="col mb-3"><button type="submit" class="btn btn-primary">Anwenden</button></div>
+            </div>
+       </form>  
+    </div>
+    <div class="col-1 col-lg-3"></div>
+</div>
+ 
+
+
+<div style="height: 80vh; width: 80%; margin-left: auto; margin-right: auto;">
+    <canvas id="linechart"></canvas>
+</div>
+<script>
+    const ctx = document.getElementById('linechart');
+
+    var lineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{ labels | safe }},
+            datasets: [
+                {
+                    label: "Globalstrahlung in W/m^2",
+                    data: {{ globalstrahlung | safe }},
+                    fill: false,
+                    lineTension: 0.01
+                },
+                {
+                    label: "PV Leistung in kW",
+                    data: {{ power | safe }},
+                    fill: false,
+                    lineTension: 0.01
+                },
+                {
+                    label: "Strompreis in €/MWh",
+                    data: {{ strompreis | safe }},
+                    fill: false,
+                    lineTension: 0.5
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            elements: {
+                point: {
+                    radius: 0
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: 'white'
+                    }
+                },
+                y: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: 'white'
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}
+
