@@ -1,3 +1,9 @@
+"""
+author: Matthias Starck
+file:   dc_daemon.py
+desc:   Skript zum Sammeln der Daten für das CPS Solar Projekt.
+"""
+
 import netCDF4 as nc
 import requests
 import os

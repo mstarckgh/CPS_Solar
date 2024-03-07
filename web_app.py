@@ -1,3 +1,9 @@
+"""
+author: Matthias Starck
+file:   web_app.py
+desc:   Flask back-end für CPS user interface.
+"""
+
 from flask import Flask, render_template, redirect, request, url_for
 import datetime as dt
 from classes import DB, Realwert, Vorhersagewert

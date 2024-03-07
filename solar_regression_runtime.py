@@ -2,7 +2,7 @@
 """
 Created on Thu Nov 30 22:19:50 2023
 
-@author: torbe
+@author: Torben Mandel
 """
 
 

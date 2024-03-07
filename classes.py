@@ -1,3 +1,10 @@
+"""
+author: Matthias Starck
+file:   classes.py
+desc:   Klassen für den vereinfachten Zugriff auf die Datenbank.
+"""
+
+
 import datetime
 
 

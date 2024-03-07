@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
+# Author: Lieven Dümke
 
 from pyomo.environ import *
 import pyomo.environ as pyo

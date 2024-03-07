@@ -1,3 +1,10 @@
+"""
+author: Matthias Starck
+file:   mc_daemon.py
+desc:   Skript zum Senden des Signal zum Laden über mqtt.
+"""
+
+
 import paho.mqtt.client as paho
 from classes import DB
 import datetime as dt
