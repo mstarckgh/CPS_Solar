@@ -1,7 +1,7 @@
 """
 author: Matthias Starck
 file:   mc_daemon.py
-desc:   Skript zum Senden des Signal zum Laden über mqtt.
+desc:   Skript zum Senden des Signals zum Laden über mqtt.
 """
 
 
